@@ -1,0 +1,39 @@
+[System]
+Name='prac_logica'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='error_velocidad'
+Range=[-200 200]
+NumMFs=2
+MF1='negativo':'trapmf',[-200 -200 -7 5]
+MF2='positivo':'trapmf',[-5 7 200 200]
+
+[Input2]
+Name='aceleracion'
+Range=[-100 100]
+NumMFs=2
+MF1='negativa':'trapmf',[-100 -100 -50 50]
+MF2='positiva':'trapmf',[-50 50 100 100]
+
+[Output1]
+Name='acelerador'
+Range=[-1 1]
+NumMFs=2
+MF1='levanta':'trapmf',[-1 -1 -0.5 0.5]
+MF2='pisa':'trapmf',[-0.5 0.5 1 1]
+
+[Rules]
+2 0, 1 (1) : 1
+1 0, 2 (1) : 1
+0 2, 1 (1) : 1
+0 1, 2 (1) : 1
